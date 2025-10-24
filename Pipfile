@@ -11,6 +11,7 @@ flask-migrate = "*"
 psycopg2 = "*"
 flask-sqlalchemy = "*"
 flask-restful = "*"
+faker = "*"
 
 [dev-packages]
 

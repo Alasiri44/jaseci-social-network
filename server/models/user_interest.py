@@ -1,4 +1,4 @@
-from models import db
+from .__init_ import db
 
 class UserInterest(db.Model):
     __tablename__ = "user_interests"

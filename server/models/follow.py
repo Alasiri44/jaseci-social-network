@@ -1,4 +1,4 @@
-from models import db
+from .__init_ import db
 
 class Follow(db.Model):
     __tablename__ = "follows"

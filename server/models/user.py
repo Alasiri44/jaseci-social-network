@@ -1,4 +1,4 @@
-from models import db
+from .__init_ import db
 
 class User(db.Model):
     __tablename__ = "users"
@@ -18,6 +18,12 @@ class User(db.Model):
     likes = db.relationship('Like', backref='user', lazy=True, cascade='all, delete-orphan')
     sent_messages = db.relationship('Message', foreign_keys='Message.sender_id', backref='sender', lazy=True)
     received_messages = db.relationship('Message', foreign_keys='Message.receiver_id', backref='receiver', lazy=True)
+    
+    def friends(self):
+        """Return list of users this user is connected with."""
+        sent = [conn.connected_user for conn in self.sent_connections if conn.status == "accepted"]
+        received = [conn.user for conn in self.received_connections if conn.status == "accepted"]
+        return sent + received
 
     def __repr__(self):
         return f"<User {self.username}>"
